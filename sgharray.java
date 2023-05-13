@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class sgharray {
-    public static void main(String[] args) {
+class sgharray {
+    //utworz normalna klase
+    static void przyjmijdane() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Kwota inwestycji: ");
@@ -18,15 +19,13 @@ public class sgharray {
         double kapital = 0;
 
         ArrayList<Double> wyniki = new ArrayList<>();
+    }
 
-        while (true) {
+        //klasa jako obiekt, nie zagniezdzaj wszystkiego w jednym
+        static void kalkulator() {
 
-            System.out.println("Podaj sposób kapitalizacji odsetek: ");
-            System.out.println("1. Odsetki roczne");
-            System.out.println("2. Odsetki kwartalne");
-            System.out.println("3. Odsetki miesięczne");
-            System.out.println("0. Wyjdź");
-            wybor = scanner.nextInt();
+            System.out.println("Podaj sposób kapitalizacji odsetek: \n 1. Odsetki roczne \n 2. Odsetki kwartalne \n 3. Odsetki miesięczne \n 0. Wyjdź");
+            wybor = scanner.nextInt(); //nie pamietam czy w nowej klasie ma stac nowy skaner, sprawdz
 
             if (wybor == 0) {
                 System.out.println("Zamykanie aplikacji...");
@@ -58,23 +57,29 @@ public class sgharray {
         }
     }
 
-    public static double odsetkiRoczne(double poczatkowaWartosc, double oprocentowanieRoczne, int liczbaLat) {
+    static double odsetkiRoczne(double poczatkowaWartosc, double oprocentowanieRoczne, int liczbaLat) {
         double kapital = poczatkowaWartosc * Math.pow(1 + oprocentowanieRoczne, liczbaLat);
         return kapital;
     }
 
-    public static double odsetkiKwartalne(double poczatkowaWartosc, double oprocentowanieRoczne, int liczbaLat) {
+    static double odsetkiKwartalne(double poczatkowaWartosc, double oprocentowanieRoczne, int liczbaLat) {
         int iloscKwartalow = liczbaLat * 4;
         double stopaKwartalna = oprocentowanieRoczne / 4;
         double kapital = poczatkowaWartosc * Math.pow(1 + stopaKwartalna, iloscKwartalow);
         return kapital;
     }
 
-    public static double odsetkiMiesieczne(double poczatkowaWartosc, double oprocentowanieRoczne, int liczbaLat) {
+    static double odsetkiMiesieczne(double poczatkowaWartosc, double oprocentowanieRoczne, int liczbaLat) {
         int iloscMiesiecy = liczbaLat * 12;
         double stopaMiesieczna = oprocentowanieRoczne / 12;
         double kapital = poczatkowaWartosc * Math.pow(1 + stopaMiesieczna, iloscMiesiecy);
         return kapital;
     }
+//uruchom po kolei obiekty
+    public static void main(String[] args) {
+        przymijdane();
+        kalkulator();
+    }
 }
+//zrob porzadeczek, indenty sie na bank nie zgadzaja etc, troche na pałe to pozmieniałem ale musisz po prostu sam ogarnąć OOP
 
